@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>NASA-Frame</title>
+    <meta name="description" content="NASA-Frame">
+    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.0/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/wmurphyrd/aframe-super-hands-component/master/dist/super-hands.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="apollo14-obj" src="models/apollo_14_landing/apollo_14.obj"></a-asset-item>
+        <a-asset-item id="apollo14-mtl" src="models/apollo_14_landing/apollo_14.mtl"></a-asset-item>
+        <a-asset-item id="hab1-obj" src="models/HDU/HDU_lowRez_part1.obj"></a-asset-item>
+        <a-asset-item id="hab1-mtl" src="models/HDU/HDU_lowRez_part1.mtl"></a-asset-item>
+        <a-asset-item id="hab2-obj" src="models/HDU/HDU_lowRez_part2.obj"></a-asset-item>
+        <a-asset-item id="hab2-mtl" src="models/HDU/HDU_lowRez_part2.mtl"></a-asset-item>
+        <a-asset-item id="astro-obj" src="models/astro/Z2.obj"></a-asset-item>
+        <a-asset-item id="astro-mtl" src="models/astro/Z2.mtl"></a-asset-item>
+        <img id="earth" src="earthmoon.jpg" />
+        <img id="moonsurface" src="models/apollo_14_landing/as08-14-2432.jpg" />
+        <a-mixin id="controller"  
+                 super-hands
+                 sphere-collider="objects: [grabbable]"></a-mixin>
+        <a-mixin id="worldscale" scale="0.1 0.1 0.1"></a-mixin>
+      </a-assets>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity id="world" position="0 0.5 -0.5">
+        <a-obj-model id="landing" src="#apollo14-obj" mixin="worldscale"
+                     material="color: grey; src: #moonsurface; repeat: 4 4; roughness: 0.72"
+                     position="0 0 0"></a-obj-model>
+        <a-entity mixin="worldscale" position="0 -0.17 -0.86" 
+                  geometry="primitive:sphere; radius:5.26"
+                  material="transparent: true; opacity:0">
+          <a-obj-model scale="0.01 0.01 0.01" src="#hab1-obj" mtl="#hab1-mtl"></a-obj-model>
+          <a-obj-model scale="0.01 0.01 0.01" src="#hab2-obj" mtl="#hab2-mtl"></a-obj-model>
+        </a-entity>
+        <a-sphere radius="1.12" transparent="true" opacity="0" grabbable mixin="worldscale">
+          <a-obj-model src="#astro-obj" mtl="#astro-mtl" 
+                       position="0 -0.92 -0.07"></a-obj-model>
+        </a-sphere>
+        
+      </a-entity>
+      <!--Tracked controls. -->
+      <a-entity hand-controls="left" mixin="controller"></a-entity>
+      <a-entity hand-controls="right" mixin="controller"></a-entity>
+      <a-sky src="#earth"></a-sky>
+    </a-scene>
+  </body>
+</html>
