@@ -7,6 +7,7 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.0/dist/aframe-extras.min.js"></script>
     <script src="https://rawgit.com/wmurphyrd/aframe-super-hands-component/master/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@4.x.x/dist/aframe-layout-component.min.js"></script>
   </head>
   <body>
     <a-scene>
@@ -19,29 +20,126 @@
         <a-asset-item id="hab2-mtl" src="models/HDU/HDU_lowRez_part2.mtl"></a-asset-item>
         <a-asset-item id="astro-obj" src="models/astro/Z2.obj"></a-asset-item>
         <a-asset-item id="astro-mtl" src="models/astro/Z2.mtl"></a-asset-item>
+        <a-asset-item id="loral-obj" src="models/Loral-1300Com-main.obj"></a-asset-item>
+        <a-asset-item id="loral-mtl" src="models/Loral-1300Com-main.mtl"></a-asset-item>
+        <a-asset-item id="maven-obj" src="models/MAVEN6.OBJ"></a-asset-item>
+        <a-asset-item id="maven-mtl" src="models/MAVEN6.mtl"></a-asset-item>
+         <a-asset-item id="mmsev-obj" src="models/MMSEV.obj"></a-asset-item>
+        <a-asset-item id="mmsev-mtl" src="models/MMSEV.mtl"></a-asset-item>
+         <a-asset-item id="pahrump1-obj" src="models/pahrump_print_1x.obj"></a-asset-item>
+         <a-asset-item id="pahrump2-obj" src="models/pahrump_print_2x.obj"></a-asset-item>
+         <a-asset-item id="topex-obj" src="models/Topex-Posidon-composite.obj"></a-asset-item>
+        <a-asset-item id="topex-mtl" src="models/Topex-Posidon-composite.obj.mtl"></a-asset-item>
+         <a-asset-item id="aces-obj" src="models/ACES/acesjustforroomshow.obj"></a-asset-item>
+        <a-asset-item id="aces-mtl" src="models/ACES/acesjustforroomshow.mtl"></a-asset-item>
+         <a-asset-item id="casa-obj" src="models/CasA_Supernova_Remnant-print_ready/CasA_Supernova_Remnant.obj"></a-asset-item>
+        <a-asset-item id="casa-mtl" src="models/CasA_Supernova_Remnant-print_ready/CasA_Supernova_Remnant.mtl"></a-asset-item>
+         <a-asset-item id="crawler-obj" src="models/Crawler/crawler.obj"></a-asset-item>
+        <a-asset-item id="crawler-mtl" src="models/Crawler/crawler.mtl"></a-asset-item>
+         <a-asset-item id="emu-obj" src="models/EMU/EMU.obj"></a-asset-item>
+        <a-asset-item id="emu-mtl" src="models/EMU/EMU.mtl"></a-asset-item>
+         <a-asset-item id="gantry-obj" src="models/Gantry/Gantry.obj"></a-asset-item>
+        <a-asset-item id="gantry-mtl" src="models/Gantry/Gantry.mtl"></a-asset-item>
+         <a-asset-item id="gemini-obj" src="models/Gemini/GeminiSuit.obj"></a-asset-item>
+        <a-asset-item id="gemini-mtl" src="models/Gemini/GeminiSuit.mtl"></a-asset-item>
+         <a-asset-item id="globalhawk-obj" src="models/GlobalHawk/GlobalHawkOBJ.obj"></a-asset-item>
+        <a-asset-item id="globalhawk-mtl" src="models/GlobalHawk/GlobalHawkOBJ.mtl"></a-asset-item>
+         <a-asset-item id="juno-obj" src="models/JunoOBJ/Juno.obj"></a-asset-item>
+        <a-asset-item id="juno-mtl" src="models/JunoOBJ/Juno.mtl"></a-asset-item>
+        <a-asset-item id="keppler1-obj" src="models/kepler_BA/photometer.obj"></a-asset-item>
+        <a-asset-item id="keppler2-obj" src="models/kepler_BA/solararray.obj"></a-asset-item>
+        <a-asset-item id="mercury-obj" src="models/Mercury/Mercury.obj"></a-asset-item>
+        <a-asset-item id="mercury-mtl" src="models/Mercury/Mercury.mtl"></a-asset-item>
+        <a-asset-item id="mk3-obj" src="models/MKIII/MKIII.obj"></a-asset-item>
+        <a-asset-item id="mk3-mtl" src="models/MKIII/MKIII.mtl"></a-asset-item>
+        <a-asset-item id="vab-obj" src="models/VABBuilding/VAB.obj"></a-asset-item>
+        <a-asset-item id="vab-mtl" src="models/VABBuilding/VAB.mtl"></a-asset-item>
+        <a-asset-item id="bennu-obj" src="models/Bennu Radar.obj"></a-asset-item>
         <img id="earth" src="earthmoon.jpg" />
         <img id="moonsurface" src="models/apollo_14_landing/as08-14-2432.jpg" />
         <a-mixin id="controller"  
                  super-hands
-                 sphere-collider="objects: [grabbable]"></a-mixin>
+                 sphere-collider="objects: #bigmodels a-entity, #smallmodels a-entity"></a-mixin>
         <a-mixin id="worldscale" scale="0.1 0.1 0.1"></a-mixin>
+        <a-mixin id="collide" 
+                 geometry="primitive: sphere;"
+                 material="transparent: true; opacity:0"
+                 grabbable></a-mixin>
       </a-assets>
       <a-sky color="#ECECEC"></a-sky>
-      <a-entity id="world" position="0 0.5 -0.5">
+      <a-entity id="world" position="0 0.5 -0.25">
         <a-obj-model id="landing" src="#apollo14-obj" mixin="worldscale"
-                     material="color: grey; src: #moonsurface; repeat: 4 4; roughness: 0.72"
-                     position="0 0 0"></a-obj-model>
-        <a-entity mixin="worldscale" position="0 -0.17 -0.86" 
-                  geometry="primitive:sphere; radius:5.26"
-                  material="transparent: true; opacity:0">
-          <a-obj-model scale="0.01 0.01 0.01" src="#hab1-obj" mtl="#hab1-mtl"></a-obj-model>
-          <a-obj-model scale="0.01 0.01 0.01" src="#hab2-obj" mtl="#hab2-mtl"></a-obj-model>
+                     material="color: grey; src: #moonsurface; repeat: 8 8; roughness: 0.72"
+                     position="-5 0 0"></a-obj-model>
+        <a-entity id="bigmodels" layout="margin: 1.5" position="-4.28 0 -2">
+          <a-entity mixin="worldscale collide" geometry="radius:5.26">
+            <a-obj-model scale="0.01 0.01 0.01" src="#hab1-obj" mtl="#hab1-mtl"></a-obj-model>
+            <a-obj-model scale="0.01 0.01 0.01" src="#hab2-obj" mtl="#hab2-mtl"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 2">
+            <a-obj-model src="#mmsev-obj" mtl="#mmsev-mtl"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 6">
+            <a-obj-model src="#crawler-obj" mtl="#crawler-mtl" position="-2 -6.5 -4.27"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 6">
+            <a-obj-model src="#gantry-obj" mtl="#gantry-mtl"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 5">
+            <a-obj-model src="#globalhawk-obj" mtl="#globalhawk-mtl" scale="0.05 0.05 0.05"></a-obj-model>
+          </a-entity>
+           <a-entity mixin="worldscale collide" geometry="radius: 4">
+            <a-obj-model src="#keppler1-obj" scale="0.2 0.2 0.2"></a-obj-model>
+            <a-obj-model src="#keppler2-obj" scale="0.2 0.2 0.2" ></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 9">
+            <a-obj-model src="#vab-obj" mtl="#vab-mtl"></a-obj-model>
+          </a-entity>
+     <!--     <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model scale="0.01 0.01 0.01" src="#loral-obj" mtl="#loral-mtl"></a-obj-model>
+          </a-entity> -->
+      <!-- landing site missing tex    <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#pahrump1-obj" mtl="#pahrump1-mtl"></a-obj-model>
+            <a-obj-model src="#pahrump2-obj" mtl="#pahrump2-mtl"></a-obj-model>
+          </a-entity> 
+  bugged        <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#topex-obj" mtl="#topex-mtl"></a-obj-model>
+          </a-entity>
+  bugged        <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#juno-obj" mtl="#juno-mtl" scale="0.001 0.001 0.001"></a-obj-model>
+          </a-entity>
+ too many polys          <a-entity mixin="worldscale collide" geometry="radius: 6">
+            <a-obj-model src="#casa-obj" mtl="#casa-mtl"></a-obj-model>
+          </a-entity>
+-->
         </a-entity>
-        <a-sphere radius="1.12" transparent="true" opacity="0" grabbable mixin="worldscale">
-          <a-obj-model src="#astro-obj" mtl="#astro-mtl" 
-                       position="0 -0.92 -0.07"></a-obj-model>
-        </a-sphere>
-        
+        <a-entity id="smallmodels" layout="margin: 0.15" position="-1.62 0 .25">
+          <a-entity mixin="worldscale collide" geometry="radius:1.12">
+            <a-obj-model src="#astro-obj" mtl="#astro-mtl"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#bennu-obj"></a-obj-model>
+          </a-entity>
+    <!-- mising texture      <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#maven-obj" mtl="#maven-mtl"></a-obj-model>
+          </a-entity> -->
+          <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#aces-obj" mtl="#aces-mtl" position="-1.07 -1.05 4.66" rotation="0 180 0"></a-obj-model>
+            
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#emu-obj" mtl="#emu-mtl" position="-3.19 -0.8 4.47" rotation="0 180 0"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#gemini-obj" mtl="#gemini-mtl" rotation="0 180 0" position="3.34 -0.96 3.65"></a-obj-model>
+          </a-entity>
+         <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#mercury-obj" mtl="#mercury-mtl" rotation="0 180 0" position="4.54 -1.10 1.71"></a-obj-model>
+          </a-entity>
+          <a-entity mixin="worldscale collide" geometry="radius: 1">
+            <a-obj-model src="#mk3-obj" mtl="#mk3-mtl" rotation="0 180 0" position="-4.63 -0.91 2.24"></a-obj-model>
+          </a-entity>
+        </a-entity>
       </a-entity>
       <!--Tracked controls. -->
       <a-entity hand-controls="left" mixin="controller"></a-entity>
